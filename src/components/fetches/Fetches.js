@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Card, CardImg, CardBody, CardTitle, CardText, Col, Container, Row } from 'react-bootstrap';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -11,22 +12,22 @@ const ProductList = () => {
   }, []); // Empty dependency array to only run this effect once on component mount
 
   return (
-    <div className="container">
-      <div className="row">
+    <Container>
+      <Row>
         {products.map(product => (
-          <div key={product.id} className="col-md-4 mb-4">
-            <div className="card h-100">
-              <img src={product.image} className="card-img-top" alt={product.title} />
-              <div className="card-body">
-                <h5 className="card-title">{product.title}</h5>
-                <p className="card-price">${product.price}</p>
-                <p className="card-description">{product.description}</p>
-              </div>
-            </div>
-          </div>
+          <Col key={product.id} md={4} className="mb-4">
+            <Card className="h-100">
+              <CardImg variant="top" src={product.image} alt={product.title} />
+              <CardBody>
+                <CardTitle>{product.title}</CardTitle>
+                <CardText>${product.price}</CardText>
+                <CardText>{product.description}</CardText>
+              </CardBody>
+            </Card>
+          </Col>
         ))}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 
